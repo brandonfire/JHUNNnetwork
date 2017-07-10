@@ -35,7 +35,7 @@ class MutiLayerNeuralNetwork:
 
 		for x in range(self.layers):
 			self.bias.append(2*np.random.random() - 1)
-		print self.weights
+		#print self.weights
 	
 	
 	#first is the function of sigmoid. We have two parts, function for sigmoid forward output or for derivative of sigmoid back propagation
@@ -86,11 +86,11 @@ class MutiLayerNeuralNetwork:
 		ldata.append(self.softmax(ldata[-1]))
 		l_error=abs(self.testoutput-ldata[-2])
 		print "prediction:"
-		print ldata[-2]
+		print ldata[-2]*26+27
 		print "Testoutput"
-		print self.testoutput
+		print self.testoutput*26+27
 		print "Error:"
-		print l_error
+		print l_error*26
 		x = 0
 		for i in l_error:
 			if(abs(i)<0.5):
@@ -118,7 +118,7 @@ class MutiLayerNeuralNetwork:
 			
 			inputd = block[:,:-1]
 			outputd = block[:,-1:]
-			for iter in range(6):
+			for iter in range(600):
 				ldata = []
 				ldata.append(inputd)
 				for x in range(self.layers):
@@ -172,6 +172,11 @@ class MutiLayerNeuralNetwork:
 	def NNdata(self,Tdata):
 		data = np.genfromtxt("Jdatacsv.csv",delimiter=',')
 		output = (data[:,0] -27)/26
+		for idx in range(50):
+			mi = min(data[:,idx+1])
+			mx = max(data[:,idx+1])
+			data[:,idx+1] = (data[:,idx+1] - mi)/(mx - mi)
+		
 		inp = data[:,1:51]
 		return inp, np.asarray([output]).T, inp, np.asarray([output]).T
 def testdata():
