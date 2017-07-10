@@ -175,7 +175,7 @@ class MutiLayerNeuralNetwork:
 		inp = data[:,1:51]
 		return inp, np.asarray([output]).T, inp, np.asarray([output]).T
 def testdata():
-	size = [50,2,1]#This is the size of neural network. first item is input size, then neuons of each layer, the last one is output size
+	size = [50,1,1]#This is the size of neural network. first item is input size, then neuons of each layer, the last one is output size
 	N4 =  MutiLayerNeuralNetwork(size,"./Jdatacsv.csv","sigmoid")# arguement size: the size of nural network,data: datapath,activefcuntion "sigmoid"
 	N4.traind()
 	N4.predictd()
